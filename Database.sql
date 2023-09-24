@@ -10,6 +10,9 @@ CREATE SCHEMA contador;
 CREATE TABLE shop.subCursal(
   nombre VARCHAR(20) NOT NULL PRIMARY KEY
 );
+INSERT INTO shop.subCursal(nombre) VALUES ('CENTRAL');
+INSERT INTO shop.subCursal(nombre) VALUES ('NORTE');
+INSERT INTO shop.subCursal(nombre) VALUES ('SUR');
 
 -- empleado Cajero, Bodega, Inventario, Administrador -- 
 CREATE TABLE personal.empleado (

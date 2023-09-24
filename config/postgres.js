@@ -9,4 +9,5 @@ const connectionData = {
   }
   const client = new Client(connectionData)
 
+
 module.exports = client
