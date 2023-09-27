@@ -16,14 +16,18 @@ INSERT INTO shop.subCursal(nombre) VALUES ('SUR');
 
 -- empleado Cajero, Bodega, Inventario, Administrador -- 
 CREATE TABLE personal.empleado (
-  user VARCHAR(9) NOT NULL PRIMARY KEY,
+  usuario VARCHAR(9) NOT NULL PRIMARY KEY,
   password VARCHAR(10) NOT NULL,
   name VARCHAR(50) NOT NULL,
   rol VARCHAR(3) NOT NULL,
   subCursal VARCHAR(20) NOT NULL,
-  estado BOOLEAN NOT NULL,
+  estado VARCHAR(2) NOT NULL,
   FOREIGN KEY (subCursal) REFERENCES shop.subCursal(nombre)
 );
+INSERT INTO personal.empleado(usuario, password, name, rol, subCursal, estado) VALUES 
+('caj1', '1234', 'Edgar Gonzales', 'caj','CENTRAL','1'),
+('caj2', '1234', 'Brandon Gonzales', 'caj','NORTE','1'), 
+('caj3', '1234', 'Emily Gonzales', 'caj','SUR','1');
 
 CREATE TABLE usuario.tarjeta(
     no_card VARCHAR(10) NOT NULL PRIMARY KEY,
@@ -35,16 +39,16 @@ CREATE TABLE usuario.tarjeta(
 CREATE TABLE usuario.cliente(
     nit VARCHAR(10) NOT NULL PRIMARY KEY,
     nombre VARCHAR(25) NOT NULL,
-    no_card VARCHAR(10) NOT NULL,
+    no_card VARCHAR(10),
     FOREIGN KEY (no_card) REFERENCES usuario.tarjeta(no_card)
 );
 
 -- Asigna una caja a un empleado.cajero -- 
-CREATE TABLE shop.caja (
-  user_empleado VARCHAR(9) NOT NULL PRIMARY KEY,
+CREATE TABLE personal.caja (
+  user_empleado VARCHAR(9) NOT NULL,
   --cod_cajero VARCHAR(9) NOT NULL PRIMARY KEY, --FORANEA Y PRIMARIA
   no_caja VARCHAR(5) NOT NULL,
-  FOREIGN KEY (user_empleado) REFERENCES personal.empleado(user)
+  FOREIGN KEY (user_empleado) REFERENCES personal.empleado(usuario)
 );
 
 INSERT INTO shop.caja VALUES ('24876', 'A-1','24876');
@@ -56,52 +60,44 @@ CREATE TABLE almacen.producto(
   name VARCHAR(10) NOT NULL,
   precio DECIMAL(12,4) NOT NULL
 );
+
 -- producto en bodega --
 CREATE TABLE almacen.bodega(
-  subCursal VARCHAR(20) NOT NULL PRIMARY KEY,
+  subCursal VARCHAR(20) NOT NULL,
   Cod_producto VARCHAR(10) NOT NULL,
   cantidad INT NOT NULL,
   FOREIGN KEY (Cod_producto) REFERENCES almacen.producto(cod_producto),
+  FOREIGN KEY (subCursal) REFERENCES shop.subCursal(nombre)
 );
+
 -- registro de estante --
 CREATE TABLE almacen.estante(
-  subCursal VARCHAR(20) NOT NULL PRIMARY KEY,
+  no_estante VARCHAR(10) NOT NULL PRIMARY KEY,
+  subCursal VARCHAR(20) NOT NULL,
   cod_producto VARCHAR(10) NOT NULL,
   cantidad INT NOT NULL,
-  FOREIGN KEY (cod_producto) REFERENCES almacen.producto(cod_producto)
+  FOREIGN KEY (cod_producto) REFERENCES almacen.producto(cod_producto),
+  FOREIGN KEY (subcursal) REFERENCES shop.subCursal(nombre)
 );
+
 -- factura --
 CREATE TABLE contador.factura(
-  no VARCHAR(10) NOT NULL PRIMARY KEY,
-  user_empleado VARCHAR(10) NOT NULL,
+  no_factura VARCHAR(10) NOT NULL PRIMARY KEY,
+  user_empleado VARCHAR(9) NOT NULL,
   nit VARCHAR(10) NOT NULL,
   total DECIMAL(12,4) NOT NULL,
   total_descuento DECIMAL(12,4) NOT NULL,
   fecha DATE NOT NULL,
-  FOREIGN KEY (user_empleado) REFERENCES almacen.producto(cod_producto)
+  FOREIGN KEY (user_empleado) REFERENCES personal.caja(user_empleado),
+  FOREIGN KEY (nit) REFERENCES usuario.cliente(nit)
 );
 
 -- Producto vendido --
 CREATE TABLE contador.producto_vendido(
-  cod VARCHAR(8) NOT NULL PRIMARY KEY,
+  no_factura VARCHAR(10) NOT NULL,
   cod_producto VARCHAR(10) NOT NULL,
-  factura VARCHAR(10) NOT NULL,
   cantidad INT NOT NULL,
-  FOREIGN KEY (cod_producto) REFERENCES almacen.producto(cod_producto)
+  FOREIGN KEY (cod_producto) REFERENCES almacen.producto(cod_producto),
+  FOREIGN KEY (no_factura) REFERENCES contador.factura(no_factura)
 );
 
-    -- Producto vendido --
-CREATE TABLE usuario.clientes(
-  Nit VARCHAR(9) PRIMARY KEY,
-  Name VARCHAR(50) NOT NULL,
-  Email VARCHAR(40) NOT NULL
-);
-
-CREATE TABLE contador.ventas(
-  Id VARCHAR(9) NOT NULL PRIMARY KEY,
-  Fecha DATE NOT NULL,
-  Nit VARCHAR(9) NOT NULL UNIQUE,
-  CodProduct VARCHAR(9) NOT NULL,
-  FOREIGN KEY (Nit) REFERENCES usuario.clientes(Nit),
-  FOREIGN KEY (CodProduct) REFERENCES bodega.productos(CodProducto)
-);

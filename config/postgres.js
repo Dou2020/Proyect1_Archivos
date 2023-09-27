@@ -7,7 +7,11 @@ const connectionData = {
     password: process.env.PASSWORD,
     port: process.env.PORTDB,
   }
-  const client = new Client(connectionData)
 
-
-module.exports = client
+module.exports = {
+  connect(){
+    const client = new Client(connectionData)
+    client.connect()
+    return client
+  }
+}

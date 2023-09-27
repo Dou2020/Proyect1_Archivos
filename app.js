@@ -5,8 +5,6 @@ const cors = require("cors")
 const dbConnect = require('./config/postgres')
 const app = express()
 
-const { Client } = require('pg')
-
 app.use(cors())
 
 const port = process.env.PORT || 3000
