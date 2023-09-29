@@ -1,9 +1,11 @@
 const express = require('express');
+const app = express();
 const router = express.Router();
 exports.router = router;
 const modelDB = require('./../model/index')
 const cajero = require('./cajeroRoute')
 
+app.locals.name = '';
 // Iniciar sesion en los diferentes usuarios
 router.get('/', (req, res) => {
   res.render('index', { title: 'Iniciar Sesion' });
@@ -17,14 +19,14 @@ router.post('/Proceder', async (req, res) => {
   const password = req.body.password || '';
   console.log('date: ',nombre,' ', password)
 
-  const data = await modelDB.obtenerUser(nombre)
-
-  console.log(data[0].nombre)
-  res.render('./Cajero/cajeroIndex', { title: 'Iniciar Sesion Cajero' });
+  const name = await modelDB.obtenerUser(nombre)
+  app.locals.name = name[0];
+  console.log(app.locals.name)
+  res.render('./Cajero/cajeroIndex', { name: app.locals.name });
 
 })
 
 // routes de cajero
-cajero(router);
+cajero(router,app.locals.name);
 
 module.exports = router;
