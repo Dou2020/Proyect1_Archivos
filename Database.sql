@@ -122,7 +122,7 @@ CREATE TABLE almacen.bodega(
 );
 SELECT * FROM almacen.producto INNER JOIN almacen.bodega ON almacen.producto.cod_producto = almacen.bodega.cod_producto WHERE almacen.bodega.subcursal = 'CENTRAL';
 
-SELECT * FROM almacen.producto FULL JOIN almacen.bodega ON almacen.producto.cod_producto = almacen.bodega.cod_producto WHERE almacen.bodega.cod_producto = 'prod200'; 
+SELECT * FROM almacen.producto FULL JOIN almacen.bodega ON almacen.producto.cod_producto = almacen.bodega.cod_producto WHERE almacen.bodega.cod_producto = 'prod200' AND almacen.bodega.subcursal = 'CENTRAL'; 
 -- regitro de producto a la bodega SUBCURSAL SUR,CENTRAL,NORTE -- 
 DO $$
 DECLARE

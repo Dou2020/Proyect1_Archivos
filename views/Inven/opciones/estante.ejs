@@ -1,0 +1,22 @@
+<% if (data){ %>
+    <div class="container">
+        <h1 style="text-align: center;"><%=data.cod_producto%> Agregar <%=data.name%>  al Estante <%= data.no_pasillo%>
+        </h1>
+        <hr>
+        <form action="/UploadEstante" method="post">
+            <input id="codProducto" name="codProducto" value="<%= data.cod_producto%>" hidden>
+            <input id="codProducto" name="cantidad" value="<%= data.cantidad%>" hidden>
+            <input id="codProducto" name="cantidadB" value="<%= data.bodega%>" hidden>
+            <div class="mb-3">
+                <label class="form-label">Cantidad Bodega</label>
+                <input class="form-control" type="text" name="cantidadBodega" value="<%=data.bodega%>" disabled>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Cantidad Estante</label>
+                <input type="number" name="cantidadN" class="form-control" value="<%=data.cantidad%>">
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="/inventario?opcion=4" class="btn btn-primary active" >Regresar</a>
+        </form>
+    </div>
+<% } %>
