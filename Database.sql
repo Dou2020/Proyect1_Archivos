@@ -29,11 +29,23 @@ INSERT INTO personal.empleado(usuario, password, name, rol, subCursal, estado) V
 ('caj2', '1234', 'Brandon Gonzales', 'caj','NORTE','1'), 
 ('caj3', '1234', 'Emily Gonzales', 'caj','SUR','1');
 
-INSERT INTO personal.empleado (usuario, password, name, rol, subCursal, estado)
-VALUES
+INSERT INTO personal.empleado (usuario, password, name, rol, subCursal, estado) VALUES
   ('caj4', '1234', 'John Doe', 'caj', 'CENTRAL', '1'),
   ('caj5', '1234', 'Jane Smith', 'caj', 'NORTE', '1'),
   ('caj6', '1234', 'Bob Johnson', 'caj', 'SUR', '1');
+
+INSERT INTO personal.empleado (usuario, password, name, rol, subCursal, estado)
+VALUES
+  ('bodeg1', '1234', 'Johns Doe', 'bod', 'CENTRAL', '1'),
+  ('bodeg2', '1234', 'Janes Smith', 'bod', 'NORTE', '1'),
+  ('bodeg3', '1234', 'Bobs Johnson', 'bod', 'SUR', '1');
+
+INSERT INTO personal.empleado(usuario, password, name, rol, subCursal, estado) VALUES 
+('inven1', '1234', 'Edgars Gonzales', 'inv','CENTRAL','1'),
+('inven2', '1234', 'Brandons Gonzales', 'inv','NORTE','1'), 
+('inven3', '1234', 'Emilys Gonzales', 'inv','SUR','1');
+
+
 
 CREATE TABLE usuario.tarjeta(
     no_card VARCHAR(10) NOT NULL PRIMARY KEY,
@@ -66,7 +78,8 @@ CREATE TABLE almacen.producto(
   name VARCHAR(25) NOT NULL,
   precio DECIMAL(12,4) NOT NULL
 );
-
+-- UPDATE PRODUCT --
+UPDATE almacen.producto SET name='Sweater1', precio='424.5691' WHERE cod_producto='prod75';
 --insert of the product --
 DO $$
 DECLARE
@@ -107,7 +120,9 @@ CREATE TABLE almacen.bodega(
   FOREIGN KEY (Cod_producto) REFERENCES almacen.producto(cod_producto),
   FOREIGN KEY (subCursal) REFERENCES shop.subCursal(nombre)
 );
+SELECT * FROM almacen.producto INNER JOIN almacen.bodega ON almacen.producto.cod_producto = almacen.bodega.cod_producto WHERE almacen.bodega.subcursal = 'CENTRAL';
 
+SELECT * FROM almacen.producto FULL JOIN almacen.bodega ON almacen.producto.cod_producto = almacen.bodega.cod_producto WHERE almacen.bodega.cod_producto = 'prod200'; 
 -- regitro de producto a la bodega SUBCURSAL SUR,CENTRAL,NORTE -- 
 DO $$
 DECLARE

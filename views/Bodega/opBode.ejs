@@ -1,0 +1,10 @@
+<div class="navi">
+    <ul>
+        <li <% if (opcion < 2 || opcion > 4 || opcion == null) { %> class="active" <% } %> >
+            <a href="/bodega?opcion=1"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Inicio</span></a></li>
+
+        <li <% if (opcion == 4) { %> class="active" <% } %> >
+            <a href="/bodega?opcion=4"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Producto </span></a></li>
+  
+    </ul>
+</div>

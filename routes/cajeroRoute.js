@@ -1,17 +1,28 @@
 const modelDB = require('../model/index')
 
-module.exports = (router,name) => {
+module.exports = (router,myCache) => {
 
-    router.get('/cajeroIndex', (req,res)=>{
-        console.log(name)
-        res.render('./Cajero/cajeroIndex', { name: name });
+    router.get('/cajero', (req,res)=>{
+
+        const op = req.query.opcion  || 1;
+        const name = myCache.get('name');
+
+        if(name == undefined){
+            res.redirect('/')
+        }
+        if (name.rol == 'caj' && name.estado == 1) {
+            res.render('./Cajero/cajeroIndex', { name: name, opcion: op });            
+        }
+
     })
+
     router.get('/ingresarCliente', (req,res)=>{
         
-        res.render('./Cajero/cajeroIndex', { name: name });
+        res.render('./Cajero/cajeroIndex', { });
     })
+    
     router.get('/registroCompra', (req,res)=>{
-        res.render('./Cajero/cajeroIndex', { title: 'Iniciar Sesion Cajero' });
+        res.render('./Cajero/cajeroIndex', {});
     })
 
 }

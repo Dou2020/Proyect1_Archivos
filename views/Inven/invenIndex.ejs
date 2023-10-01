@@ -14,7 +14,7 @@
                         <img src="" alt="merkery_logo" class="visible-xs visible-sm circle-logo">
                     </a>
                 </div>
-                <%- include('./opCaj'); -%>
+                <%- include('./opInventario'); -%>
             </div>
             <div class="col-md-10 col-sm-11 display-table-cell v-align">
                 <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
@@ -34,17 +34,17 @@
                     </header>
                 </div>
                 <div class="user-dashboard" >
-                    <h1 style="text-align: center;">Bienvenido <%= name.name %> SubCursal: <%=name.subcursal%></h1>
+                    <h1 style="text-align: center;">Bienvenido Inventario <%= name.name %> SubCursal: <%=name.subcursal%></h1>
                 </div> 
                 <!-- Funcionar para agregar mas conteiner a cada opcion del laboratorio -->
                 <% if (opcion < 2 || opcion > 4 ) { %>
                     <%- include('./opciones/inicio');  -%>  
                 <% } %>
                 <% if (opcion == 4) { %>
-                    <%- include('./opciones/cajeroCliente');  -%>
+                    <%- include('./opciones/inicio');  -%>
                 <% } %>
                 <% if (opcion == 3) { %>
-                    <%- include('./opciones/cajeroCompra');  -%>   
+                    <%- include('./opciones/inicio');  -%>   
                 <% } %>
             </div>
         </div>
