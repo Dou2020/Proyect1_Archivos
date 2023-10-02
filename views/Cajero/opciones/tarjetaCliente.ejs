@@ -1,0 +1,17 @@
+<% if (data){ %>
+    <div class="container">
+        <h1 style="text-align: center;">Agregar tarjeta a <%= data%>
+        </h1>
+        <hr>
+        <form action="/addTarjeta" method="post">
+            <input id="codProducto" name="nit" value="<%= data%>" hidden>
+            <div class="mb-3">
+                <label class="form-label">No Tarjeta</label>
+                <input type="text" name="noTarjeta" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="/cajero?opcion=4" class="btn btn-primary active">Regresar</a>
+        </form>
+    </div>
+    <% } %>

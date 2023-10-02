@@ -1,82 +1,80 @@
 <h1 style="text-align: center;"> Listado Producto </h1>
 
 <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#modalSignin1">
-    Agregar Producto
-  </button>
+  Agregar Producto
+</button>
 
 <div class="user-dashboard">
-    <br>
-    <br>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
+  <br>
+  <br>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
 
-                <th class="text-center">Codigo Producto</th>
-                <th class="text-center">Nombre</th>
-                <th class="text-center">Precio</th>
-                <th class="text-center">Cantidad</th>
-                <th class="text-center">Editar</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            <% datas.forEach((data)=>{%>
-                <tr>
-                    <th scope="row">
-                        <%=data.cod_producto%>
-                    </th>
-                    <td class="text-center">
-                        <%=data.name%>
-                    </td>
-                    <td class="text-center">
-                        Q <%=data.precio%>
-                    </td>
-                    <td class="text-center">
-                        <%=data.cantidad%>
-                    </td>
-                    <td class="text-center">
-                        <a href="/editarProducto/<%=data.cod_producto%>?opcion=3" class="btn btn-primary ">Modificar</a>
-                    </td>
-                </tr>
-                <%})%>
-        </tbody>
+        <th class="text-center">Codigo Producto</th>
+        <th class="text-center">Nombre</th>
+        <th class="text-center">Precio</th>
+        <th class="text-center">Cantidad</th>
+        <th class="text-center">Editar</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <% datas.forEach((data)=>{%>
+        <tr>
+          <th scope="row">
+            <%=data.cod_producto%>
+          </th>
+          <td class="text-center">
+            <%=data.name%>
+          </td>
+          <td class="text-center">
+            Q <%=data.precio%>
+          </td>
+          <td class="text-center">
+            <%=data.cantidad%>
+          </td>
+          <td class="text-center">
+            <a href="/editarProducto/<%=data.cod_producto%>?opcion=3" class="btn btn-primary ">Modificar</a>
+          </td>
+        </tr>
+        <%})%>
+    </tbody>
 </div>
 
-  <!-- Modal -->
-  <div class="modal modal-signin bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin1" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content rounded-5 shadow">
-        <div class="modal-header p-5 pb-4 border-bottom-0">
-          <!-- <h5 class="modal-title">Modal title</h5> -->
-          <h2 class="fw-bold mb-0">Formulario Agregar Producto</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+<!-- Modal -->
+<div class="modal modal-signin bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin1" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-5 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <!-- <h5 class="modal-title">Modal title</h5> -->
+        <h2 class="fw-bold mb-0">Formulario Agregar Producto</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
 
-        <div class="modal-body p-5 pt-0">
-          <form action="/saveProducto" method="POST" class="was-validated">
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control rounded-4" id="codigoProducto" name="codProducto" required />
-              <label for="codigoProducto">Codigo</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control rounded-4" id="name" name="name" required />
-              <label for="name">Nombre de Producto</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input type="number" step="any" class="form-control rounded-4" id="precio" name="precio"
-                required />
-              <label for="precio">Precio</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="number" step="any" class="form-control rounded-4" id="cantidad" name="cantidad"
-                  required />
-                <label for="cantidad">Cantidad</label>
-            </div>
-            <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">
-              Agregar Producto
-            </button>
-            <hr class="my-4" />
-          </form>
-        </div>
+      <div class="modal-body p-5 pt-0">
+        <form action="/saveProducto" method="POST" class="was-validated">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-4" id="codigoProducto" name="codProducto" required />
+            <label for="codigoProducto">Codigo</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-4" id="name" name="name" required />
+            <label for="name">Nombre de Producto</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="number" step="any" class="form-control rounded-4" id="precio" name="precio" required />
+            <label for="precio">Precio</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="number" step="any" class="form-control rounded-4" id="cantidad" name="cantidad" required />
+            <label for="cantidad">Cantidad</label>
+          </div>
+          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">
+            Agregar Producto
+          </button>
+          <hr class="my-4" />
+        </form>
       </div>
     </div>
+  </div>

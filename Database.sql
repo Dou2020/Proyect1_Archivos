@@ -45,7 +45,8 @@ INSERT INTO personal.empleado(usuario, password, name, rol, subCursal, estado) V
 ('inven2', '1234', 'Brandons Gonzales', 'inv','NORTE','1'), 
 ('inven3', '1234', 'Emilys Gonzales', 'inv','SUR','1');
 
-
+INSERT INTO personal.empleado(usuario, password, name, rol, subCursal, estado) VALUES 
+('admin','1234','Douglas Gomez','adm','GENERAL','1');
 
 CREATE TABLE usuario.tarjeta(
     no_card VARCHAR(10) NOT NULL PRIMARY KEY,
@@ -60,6 +61,17 @@ CREATE TABLE usuario.cliente(
     no_card VARCHAR(10),
     FOREIGN KEY (no_card) REFERENCES usuario.tarjeta(no_card)
 );
+
+-- Insert of Cliente -- 
+INSERT INTO usuario.cliente(nit,nombre) VALUES 
+('5264137891','Jhonn Doe'),
+('5264137892','Janee Smith'),
+('5264137893','Bobb Johson'),
+('5264137894', 'Juan Martinez'),
+('5264137895','Devora Lux'),
+('5264137896','Ana de la Rosa'),
+('5264137897','Fancisco Lopez'),
+('5264137898','Laura Gil');
 
 -- Asigna una caja a un empleado.cajero -- 
 CREATE TABLE personal.caja (

@@ -1,0 +1,38 @@
+<div class="user-dashboard">
+    <br>
+    <br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+
+                <th class="text-center">Usuario</th>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Rol</th>
+                <th class="text-center">Subcursal</th>
+                <th class="text-center">Editar</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <% datas.forEach((data)=>{%>
+                <tr>
+                    <th scope="row">
+                        <%=data.usuario%>
+                    </th>
+                    <td class="text-center">
+                        <%=data.name%>
+                    </td>
+                    <td class="text-center">
+                        <%=data.rol%>
+                    </td>
+                    <td class="text-center">
+                        <%=data.subcursal%>
+                    </td>
+                    
+                    <td class="text-center">
+                        <a href="/editarEmpleados/<%=data.usuario%>?opcion=2" class="btn btn-primary ">Modificar</a>
+                    </td>
+                </tr>
+                <%})%>
+        </tbody>
+</div>

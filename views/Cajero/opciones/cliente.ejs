@@ -1,0 +1,24 @@
+<% if (data){ %>
+    <div class="container">
+        <h1 style="text-align: center;">Modificar Cliente <%= data.nit%>
+        </h1>
+        <hr>
+        <form action="/UploadCliente" method="post">
+            <input id="codProducto" name="nit" value="<%= data.nit%>" hidden>
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" name="name" class="form-control" value="<%=data.nombre%>" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">User Admin</label>
+                <input type="text" name="admin" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="/cajero?opcion=4" class="btn btn-primary active" >Regresar</a>
+        </form>
+    </div>
+<% } %>
